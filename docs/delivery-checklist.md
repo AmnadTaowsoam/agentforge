@@ -1,32 +1,60 @@
 ﻿# AgentForge Delivery Checklist
 
-## Product readiness
+## Documentation Ready
 
-- [ ] Primary workflow can be completed end to end.
-- [ ] Empty, loading, error, and success states are implemented.
-- [ ] Review and approval states are clear.
-- [ ] Exports include metadata and source references.
+- [ ] README explains the product in under one minute.
+- [ ] 'docs/brief.md' matches the product direction.
+- [ ] 'docs/requirements.md' is build-ready.
+- [ ] 'docs/frontend-enterprise.md' defines premium UI behavior where frontend exists.
+- [ ] 'docs/backend-implementation.md' defines modules, APIs, data, jobs, and security.
+- [ ] 'docs/quickstart.md' supports clean clone onboarding.
+- [ ] 'docs/environment.md' lists all required variables.
+- [ ] 'docs/testing-and-quality.md' defines release gates.
 
-## Engineering readiness
+## Clone-And-Run Ready
 
+- [ ] 'pnpm install' works from root.
+- [ ] '.env.example' is complete.
+- [ ] 'pnpm db:up' starts local dependencies.
+- [ ] 'pnpm db:migrate' creates schema.
+- [ ] 'pnpm dev' starts the product.
+- [ ] Sample input produces sample output.
+- [ ] Docker Compose works without paid services.
+
+## Frontend Ready
+
+- [ ] Product command center exists.
+- [ ] Create flow has validation.
+- [ ] Workbench supports source/output review.
+- [ ] Evidence panel shows inputs, warnings, assumptions, and artifacts.
+- [ ] Review and approval flow is visible.
+- [ ] No layout overlap at mobile/tablet/desktop widths.
+- [ ] Visual regression screenshots are checked.
+
+## Backend Ready
+
+- [ ] API exposes project, run, artifact, finding, review, export endpoints.
+- [ ] Worker completes the primary agentic project starting workflow.
+- [ ] Jobs are idempotent.
 - [ ] Database migrations are repeatable.
-- [ ] Tests cover core workflow and failure paths.
-- [ ] Logs include request IDs and workflow IDs.
-- [ ] Background jobs can retry or fail safely.
-- [ ] Rollback procedure is documented.
+- [ ] Audit events are recorded.
+- [ ] Secrets are redacted.
+- [ ] Export works for Markdown and JSON.
 
-## Security readiness
+## Security Ready
 
-- [ ] Workspace authorization is tested.
-- [ ] Secrets are encrypted or stored in a managed secret store.
-- [ ] Audit logs are immutable enough for operational review.
-- [ ] External actions require approval where needed.
-- [ ] Sensitive data is redacted from logs.
+- [ ] Workspace isolation is tested.
+- [ ] External inputs are treated as untrusted.
+- [ ] Destructive and outward-facing actions require confirmation.
+- [ ] Secret references are used instead of raw secret storage.
+- [ ] Logs do not contain secrets.
+- [ ] Rate limits are enabled.
 
-## Launch readiness
+## Public Launch Ready
 
-- [ ] README explains the product clearly.
-- [ ] Requirements are current.
-- [ ] Demo data is safe to share.
-- [ ] Known limitations are documented.
-- [ ] First user onboarding path is tested.
+- [ ] Safe example data included.
+- [ ] Screenshots or terminal output included.
+- [ ] Known limitations documented.
+- [ ] First release tag created.
+- [ ] GitHub topics set.
+- [ ] Issues or roadmap created for next phase.
