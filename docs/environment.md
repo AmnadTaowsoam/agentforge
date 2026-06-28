@@ -7,8 +7,8 @@ NODE_ENV=development
 PORT=4302
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/agentforge
 APP_BASE_URL=http://localhost:4302
-JWT_SECRET=change-me-local-only
-ENCRYPTION_KEY=change-me-32-byte-local-only
+JWT_SECRET=REPLACE_WITH_MINIMUM_32_CHARACTER_SECRET_HERE
+ENCRYPTION_KEY=REPLACE_WITH_32_BYTE_BASE64_ENCODED_KEY_HERE
 AI_PROVIDER=mock
 AI_MODEL=mock
 LOG_LEVEL=info
@@ -36,12 +36,14 @@ SENTRY_DSN=
 
 ## Feature Flags
 
+All features are enabled by default. Set any flag to `false` to disable.
+
 ~~~bash
-FEATURE_AI_GENERATION=true
-FEATURE_EXPORT_JSON=true
-FEATURE_EXPORT_MARKDOWN=true
-FEATURE_PUBLIC_EXAMPLES=true
-FEATURE_APPROVAL_GATES=true
+FEATURE_AI_GENERATION=false
+FEATURE_EXPORT_JSON=false
+FEATURE_EXPORT_MARKDOWN=false
+FEATURE_PUBLIC_EXAMPLES=false
+FEATURE_APPROVAL_GATES=false
 ~~~
 
 ## Deployment Profiles
