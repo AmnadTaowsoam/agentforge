@@ -2,342 +2,359 @@
 
 ## 1. Purpose
 
-AgentForge is a agent builder for AI product teams, solution architects, prompt engineers. The product must support the complete path from setup to reviewed output, with enough traceability and operational control for real use by a small team.
+AgentForge is a Agentic Project Starter that helps users produce practical, reviewable, and reusable outputs from a focused workflow. The product must be useful as a public repository while still being compatible with Cerebra MCP as an internal orchestration, review, testing, security, and DevOps layer.
 
-## 2. Goals
+## 2. Source Alignment
 
-- Deliver one reliable end-to-end workflow for agent builder.
-- Make inputs, assumptions, decisions, and outputs explicit.
-- Reduce manual setup and handoff work.
-- Provide human review points before risky or outward-facing actions.
-- Produce artifacts that can be used directly by engineering, operations, or stakeholders.
+This requirements document is based on the project overview for the Cerebra public product set. Product definition:
 
-## 3. Non-goals
+- Name: AgentForge
+- Category: Agentic Project Starter
+- Summary: Turn a raw product idea into a complete project package that an AI coding agent can continue building.
+- Priority: Phase 2 / Top 5
+- Cerebra MCP fit: CerebraOrchestrator-mcp, CerebraCodegraph-mcp, CerebraReview-mcp, CerebraTesting-mcp
 
-- Do not build a general chat application as the primary experience.
-- Do not automate destructive, external, or high-risk actions without review.
-- Do not require enterprise infrastructure for the first release.
-- Do not hide AI uncertainty; assumptions and source gaps must be visible.
-- Do not optimize for broad marketplace features before the core workflow works.
+## 3. Goals
 
-## 4. Personas
+- Provide a complete MVP path from input to usable output.
+- Make AgentForge understandable to public GitHub visitors without requiring private Cerebra context.
+- Produce artifacts that developers, operators, or AI coding agents can immediately use.
+- Include validation, review, risk reporting, and delivery evidence.
+- Keep the first release focused enough to build and maintain.
 
-### Primary operator
+## 4. Non-goals
 
-Needs to run the workflow, inspect output, and deliver results quickly. Values clear steps, low setup cost, and trustworthy output.
+- Do not build a generic chatbot as the primary product.
+- Do not require users to run the full Cerebra MCP platform to understand the repo.
+- Do not hide assumptions, missing inputs, or risk warnings.
+- Do not perform destructive, paid, or outward-facing actions without explicit confirmation.
+- Do not expand into marketplace, billing, or enterprise administration before MVP value is proven.
 
-### Technical owner
+## 5. Personas
 
-Needs integration control, data visibility, security review, and deployment confidence. Values APIs, logs, configuration, and predictable failure behavior.
+### Primary Builder
 
-### Reviewer or approver
+The person who runs AgentForge to create or inspect the target artifact. They need clear setup, fast feedback, and usable output.
 
-Needs to verify that output is complete, safe, and ready to use. Values evidence, diffs, warnings, and approval history.
+### Technical Reviewer
 
-## 5. Core capabilities
+The person who evaluates output quality, security, maintainability, and delivery readiness. They need evidence, findings, and clear risk levels.
 
-The MVP must include these capabilities:
+### Project Owner
 
-- agent profile editor, instruction versioning, tool permission matrix, eval harness, deployment checklist
-- workspace and project management
-- role-based user access
-- guided intake forms with validation
-- source attachment and reference tracking
-- AI-assisted draft generation or analysis
-- deterministic rule checks where possible
-- review, edit, approve, and reject states
-- export to Markdown and JSON
-- audit events for important actions
-- admin-configurable retention and integration settings
+The person deciding whether the product is worth adopting or extending. They need a readable README, credible scope, sample output, and a realistic roadmap.
 
-## 6. Functional requirements
+## 6. Inputs
 
-### 6.1 Workspace management
+The product must accept these input categories:
 
-- Users can create a workspace.
-- Users can invite collaborators by email.
-- Workspace roles must include owner, editor, reviewer, and viewer.
-- Owners can configure retention, integrations, and default workflow templates.
-- Every project belongs to exactly one workspace.
+- idea description, target users, features, preferred stack, deployment target, constraints, examples
+- project metadata: name, owner, tags, target environment
+- optional constraints: technology stack, compliance needs, deployment target
+- optional examples: sample files, sample repo, sample API, sample workflow, sample prompt, or sample document depending on project type
 
-### 6.2 Project lifecycle
+Required inputs must be explicitly marked. Optional inputs must improve quality but not block basic usage.
 
-- Users can create, archive, restore, and delete projects.
-- Each project has status: draft, ready, running, review, approved, delivered, archived.
-- Each project stores owner, reviewers, due date, tags, and risk level.
-- Status changes must be logged with actor, timestamp, previous state, and next state.
+## 7. Outputs
 
-### 6.3 Intake and validation
+The product must produce:
 
-- The product must provide a guided intake form for agent builder.
-- Required fields must be validated before a run starts.
-- Optional fields should improve output quality but must not block basic usage.
-- Missing critical information must be reported as explicit questions or warnings.
-- Users can attach files, URLs, repository references, API specs, or free text where relevant.
+- brief.md, requirements.md, architecture.md, api-contract.md, data-model.md, tasks.md, test-plan.md, README.md, optional app scaffold
+- a human-readable report or generated package
+- machine-readable metadata where useful
+- assumptions and unresolved questions
+- validation results
+- risk warnings
+- next-step checklist
 
-### 6.4 Workflow execution
+Outputs must be exportable or commit-ready for public repository usage.
 
-- Users can start a run only after required inputs pass validation.
-- Runs must have status: queued, running, needs_input, failed, completed, cancelled.
-- The system must support cancellation before final output is committed.
-- Long-running work must show progress by step.
-- Failed runs must expose actionable error messages and retry guidance.
+## 8. Core Capabilities
 
-### 6.5 AI assistance
+- idea intake
+- scope clarification
+- document generation
+- architecture recommendation
+- task breakdown
+- agent handoff package
+- starter repo scaffold
+- quality gates
 
-- AI output must be stored with prompt version, model/provider, input references, and timestamp.
-- AI-generated content must be marked as draft until reviewed.
-- The system must separate verified facts, inferred recommendations, and unresolved assumptions.
-- Prompts must be versioned so old runs remain explainable.
-- Sensitive inputs must be redacted from logs unless explicitly allowed by policy.
+## 9. Functional Requirements
 
-### 6.6 Review and approval
+### 9.1 Project or Run Setup
 
-- Reviewers can comment on outputs and request changes.
-- Users can compare output versions.
-- Approval requires all blocking warnings to be resolved or explicitly waived.
-- Waivers must include reason, approver, and timestamp.
-- Delivered output must link back to the approved version.
+- Users can create a new run or project.
+- Users can name the run and provide required inputs.
+- The system validates input completeness before execution.
+- The system stores run metadata, timestamps, and configuration.
+- The system can run with safe sample data for public demos.
 
-### 6.7 Export and handoff
+### 9.2 Input Validation
 
-- Users can export approved output as Markdown.
-- Users can export machine-readable output as JSON.
-- The product should support at least one integration handoff in MVP: OpenAI API, GitHub, vector stores, observability backends.
-- Exports must include metadata, source references, approval state, and generation date.
+- Required fields must be checked before the workflow starts.
+- Invalid URLs, file paths, schemas, commands, or configuration values must produce actionable errors.
+- Missing context must be shown as questions or warnings.
+- The user can proceed with non-blocking warnings only when the workflow is still safe.
 
-### 6.8 Admin and configuration
+### 9.3 Workflow Execution
 
-- Owners can configure allowed integrations.
-- Owners can configure default templates.
-- Owners can view audit logs.
-- Owners can set data retention windows.
-- Owners can disable AI features for a workspace if required.
+- The system must expose execution states: draft, ready, running, needs_input, completed, failed, cancelled.
+- Each workflow step must have a clear name and status.
+- Long-running work must show progress.
+- Failed steps must include error category, probable cause, and retry guidance.
+- The workflow must be deterministic where deterministic checks are possible.
 
-## 7. Suggested data model
+### 9.4 AI-Assisted Generation or Analysis
 
-### users
+- AI output must be marked as draft until validated or reviewed.
+- Prompt templates must be versioned when AI is used.
+- The system must record source inputs used to generate output.
+- The system must separate verified facts from inferred recommendations.
+- The system must include assumptions and confidence notes for generated content.
 
-- id
-- email
-- display_name
-- created_at
-- last_login_at
+### 9.5 Review and Quality Gates
 
-### workspaces
+- The product must include a quality checklist for the core output.
+- Blocking issues must be separated from advisory warnings.
+- Users must be able to review output before export.
+- Review evidence must include timestamp, run ID, and checklist version.
+- The MVP must include at least one end-to-end sample demonstrating the quality gate.
+
+### 9.6 Export and Handoff
+
+- Users can export the final result as Markdown.
+- Where useful, users can export JSON metadata.
+- Generated files must be organized in predictable paths.
+- Exports must include source metadata, generation date, and warning status.
+- Outputs must be suitable for GitHub commits, issue creation, or direct implementation handoff.
+
+### 9.7 Public Repository Experience
+
+- README must explain the product, target users, and basic workflow.
+- docs/brief.md must describe why the product exists and what MVP should do.
+- docs/requirements.md must define build-ready requirements.
+- docs/architecture.md, roadmap.md, and delivery-checklist.md should stay consistent with the product direction.
+- The repo must include a license and ignore common local artifacts.
+
+## 10. Product-Specific Requirements
+
+### 10.1 Required MVP Workflow
+
+A user enters an idea such as a repair-shop queue booking system. AgentForge expands it into brief, requirements, architecture, API contract, data model, task plan, test plan, README, and optional backend/frontend starter structure.
+
+The MVP must prove this workflow with one complete, documented example.
+
+### 10.2 Product-Specific Features
+
+- idea intake
+- scope clarification
+- document generation
+- architecture recommendation
+- task breakdown
+- agent handoff package
+- starter repo scaffold
+- quality gates
+
+### 10.3 Product-Specific Quality Bar
+
+- Output must match the Agentic Project Starter use case.
+- Output must be concrete enough for a developer or operator to act on.
+- Output must avoid generic AI advice when a specific artifact is expected.
+- Output must include warnings for unsafe, incomplete, or unverifiable items.
+- Output must be reproducible from the same inputs and configuration.
+
+## 11. Suggested Data Model
+
+### project
 
 - id
 - name
-- owner_user_id
-- retention_days
-- created_at
-
-### workspace_members
-
-- workspace_id
-- user_id
-- role
-- invited_by
-- created_at
-
-### projects
-
-- id
-- workspace_id
-- name
+- category
+- owner
 - description
 - status
-- risk_level
-- owner_user_id
-- due_date
 - created_at
 - updated_at
 
-### project_inputs
-
-- id
-- project_id
-- input_type
-- label
-- content_uri
-- content_text
-- validation_status
-- created_at
-
-### runs
+### run
 
 - id
 - project_id
 - status
-- prompt_version
-- model_provider
-- model_name
-- started_by
+- input_hash
+- config_json
 - started_at
 - completed_at
 - failure_reason
 
-### outputs
+### input_item
 
 - id
 - run_id
-- version
-- format
-- content
-- source_reference_map
-- created_at
+- type
+- label
+- content_ref
+- validation_status
+- warnings_json
 
-### reviews
-
-- id
-- output_id
-- reviewer_user_id
-- status
-- comments
-- approved_at
-
-### audit_events
+### output_artifact
 
 - id
-- workspace_id
-- project_id
-- actor_user_id
-- action
-- metadata_json
+- run_id
+- artifact_type
+- path
+- content_ref
+- validation_status
 - created_at
 
-## 8. API requirements
+### finding
 
-The backend should expose a versioned REST API or GraphQL schema. Minimum REST endpoints:
+- id
+- run_id
+- severity
+- category
+- title
+- description
+- recommendation
+- evidence_ref
 
-- POST /api/v1/workspaces
-- GET /api/v1/workspaces/:id
-- POST /api/v1/workspaces/:id/members
+### review_event
+
+- id
+- run_id
+- reviewer
+- decision
+- checklist_version
+- notes
+- created_at
+
+## 12. API Requirements
+
+If implemented as a service, expose:
+
 - POST /api/v1/projects
 - GET /api/v1/projects/:id
-- PATCH /api/v1/projects/:id
-- POST /api/v1/projects/:id/inputs
 - POST /api/v1/projects/:id/runs
 - GET /api/v1/runs/:id
 - POST /api/v1/runs/:id/cancel
-- GET /api/v1/projects/:id/outputs
-- POST /api/v1/outputs/:id/reviews
-- POST /api/v1/outputs/:id/export
-- GET /api/v1/audit-events
+- GET /api/v1/runs/:id/artifacts
+- GET /api/v1/runs/:id/findings
+- POST /api/v1/runs/:id/review
+- POST /api/v1/runs/:id/export
 
-API responses must include stable error codes, request IDs, and validation details.
+API errors must include stable error codes, request IDs, and validation details.
 
-## 9. Security requirements
+## 13. CLI Requirements
 
-Primary risk areas: prompt injection, unsafe tool access, evaluation gaps, unclear ownership.
+If implemented as a CLI, support:
+
+- init or create command for a new project
+- un command for the main workflow
+- alidate command for inputs and generated output
+- export command for final artifacts
+- doctor command for environment checks
+- --json mode for automation
+- non-zero exit codes for blocking failures
+
+## 14. Security Requirements
+
+Main risk areas: over-scoped outputs, vague requirements, hallucinated constraints, generated architecture that does not match user capability
 
 Security requirements:
 
-- authenticate all non-public endpoints
-- enforce workspace-level authorization on every object
-- encrypt secrets at rest
-- never return another workspace's data through search, export, or logs
-- maintain audit logs for status changes, approvals, integration calls, and export actions
-- support least-privilege integration tokens
-- redact secrets and sensitive document snippets from application logs
-- require confirmation for destructive actions
-- block external delivery when required approvals are missing
+- Never log secrets or full credentials.
+- Require confirmation before destructive or outward-facing actions.
+- Treat external repositories, documents, specs, and generated commands as untrusted input.
+- Isolate execution of untrusted code or commands.
+- Store tokens only through environment variables or managed secret stores.
+- Redact sensitive fields in reports.
+- Include audit records for run creation, export, and approval.
+- Apply least privilege to integrations.
 
-## 10. Privacy and compliance
+## 15. Privacy Requirements
 
 - Users must know what data is sent to AI providers.
-- Workspace owners must be able to disable provider logging where supported.
-- Retention policy must be configurable.
-- Deleting a project must delete or tombstone derived outputs according to policy.
-- Export files must include sensitivity labels when configured.
+- The product must support safe sample data for public demos.
+- Private inputs must not be included in public examples.
+- Exported reports must label sensitive sections when applicable.
+- Deletion behavior must be documented.
 
-## 11. Observability
+## 16. Observability Requirements
 
-- Log every request with request ID, user ID, workspace ID, and latency.
-- Track workflow step duration.
-- Track AI provider usage, latency, and failure rates.
-- Emit audit events separately from debug logs.
-- Provide admin-facing error reports for failed runs.
+- Every run must have a unique run ID.
+- Logs must include step name, status, duration, and failure category.
+- AI calls must record provider, model, latency, and token usage when applicable.
+- Validation failures must be countable by category.
+- Exports must record artifact type and destination.
 
-## 12. Non-functional requirements
+## 17. Testing Requirements
 
-- First useful output should be produced in under 90 seconds for normal inputs.
-- The app must support at least 50 active projects per workspace in MVP.
-- The backend must be horizontally scalable for run workers.
-- The UI must be usable on desktop and tablet widths.
-- The product must degrade gracefully when AI provider calls fail.
-- All critical flows must have automated tests.
+- Unit tests for input validation.
+- Golden-file tests for generated Markdown or JSON artifacts.
+- Integration test for the full MVP workflow.
+- Error-path tests for missing inputs and failed external calls.
+- Security tests for secret redaction.
+- CLI or API smoke test for public demo path.
 
-## 13. Acceptance criteria
+## 18. Acceptance Criteria
 
-The MVP is acceptable when:
+The MVP is ready when:
 
-- a new user can create a workspace and project without support
-- required inputs are validated before execution
-- the core workflow produces a draft output
-- a reviewer can request changes and approve the final output
-- the approved output can be exported
-- audit logs show the complete project lifecycle
-- unauthorized users cannot access workspace data
-- failed runs can be diagnosed from logs and UI messages
-- documentation explains setup, operation, and release readiness
+- a new user can understand AgentForge from README.md
+- docs/brief.md and docs/requirements.md match the product concept
+- one sample input can produce one useful sample output
+- validation catches missing required inputs
+- risks and assumptions are visible
+- final output can be exported or committed
+- tests cover the happy path and at least three failure paths
+- no secrets are committed
+- public GitHub repo is coherent and useful
 
-## 14. Delivery plan
+## 19. Delivery Plan
 
-### Phase 1 - Foundation
+### Phase 1 - Documentation and Samples
 
-- repository setup
-- app shell
-- auth and workspace model
-- database migrations
-- audit log foundation
+- finalize README, brief, requirements, architecture, roadmap, and checklist
+- add sample input and expected output
+- define quality checklist
 
-### Phase 2 - Core workflow
+### Phase 2 - Minimal Runnable Workflow
 
-- project creation
-- intake schema
-- validation rules
-- run orchestration
-- output storage
+- implement input parser
+- implement validation
+- implement core generation or audit workflow
+- implement Markdown export
+- add smoke test
 
-### Phase 3 - AI and review
+### Phase 3 - Review and Governance
 
-- prompt templates
-- provider abstraction
-- draft output generation
-- review comments
-- approval workflow
+- add findings model
+- add review event
+- add risk levels
+- add audit events
+- add JSON export
 
-### Phase 4 - Export and integrations
+### Phase 4 - Integrations
 
-- Markdown export
-- JSON export
-- first integration handoff
-- integration audit events
+- add the first useful integration
+- add CI workflow
+- add packaged release
+- add examples for real-world usage
 
-### Phase 5 - Production readiness
+### Phase 5 - Public Launch
 
-- security review
-- automated tests
-- observability
-- deployment guide
-- incident and rollback procedures
+- polish README
+- add demo screenshots or terminal output
+- add contribution guide
+- tag first release
+- publish roadmap issues
 
-## 15. Test requirements
+## 20. Open Decisions
 
-- unit tests for validation rules
-- API tests for authorization and workspace isolation
-- integration tests for run lifecycle
-- snapshot or golden-file tests for exports
-- security tests for unauthorized access
-- failure-path tests for provider outages
-- end-to-end test for create project to approved export
-
-## 16. Open decisions
-
-- exact implementation stack
-- first integration to support
-- pricing and account model
-- data retention default
-- AI provider and model defaults
-- whether self-hosting is required in v1
+- exact implementation form: CLI, web app, library, or hybrid
+- first sample use case
+- first supported integration
+- AI provider defaults
+- persistence choice for MVP
+- whether to include Cerebra MCP adapter in v1 or keep it as internal implementation detail
