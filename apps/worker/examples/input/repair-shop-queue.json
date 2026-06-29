@@ -1,0 +1,25 @@
+{
+  "idea": "A repair shop queue management system that allows customers to check in their vehicles, track repair status in real-time, and receive SMS notifications when their car is ready. Shop managers can see all vehicles in queue, assign technicians, and update status. The system should reduce customer wait time by providing transparency into the repair process.",
+  "inputs": [
+    {
+      "id": "input-001",
+      "run_id": "run-test-001",
+      "input_type": "idea",
+      "label": "idea",
+      "content_ref": "A repair shop queue management system that allows customers to check in their vehicles, track repair status in real-time, and receive SMS notifications when their car is ready. Shop managers can see all vehicles in queue, assign technicians, and update status. The system should reduce customer wait time by providing transparency into the repair process.",
+      "validation_status": "pending",
+      "warnings_json": [],
+      "created_at": "2026-06-28T00:00:00.000Z"
+    },
+    {
+      "id": "input-002",
+      "run_id": "run-test-001",
+      "input_type": "context",
+      "label": "target_market",
+      "content_ref": "Independent auto repair shops with 2-10 bays, handling 20-50 vehicles per day",
+      "validation_status": "pending",
+      "warnings_json": [],
+      "created_at": "2026-06-28T00:00:01.000Z"
+    }
+  ]
+}

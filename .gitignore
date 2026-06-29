@@ -3,6 +3,19 @@ dist/
 build/
 .env
 .env.*
+.env.local
+.env.*.local
 .DS_Store
+Thumbs.db
 *.log
+npm-debug.log*
+pnpm-debug.log*
+.next/
+.turbo/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+*.local
 
+# internal Cerebra dogfooding handoff — never publish
+CEREBRA_MODE_A_HANDOFF.md

@@ -1,0 +1,29 @@
+{
+  "name": "agentforge",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "pnpm --recursive --if-present --parallel dev",
+    "build": "pnpm --filter @agentforge/domain build && pnpm --recursive --if-present build",
+    "lint": "pnpm --recursive --if-present lint",
+    "typecheck": "pnpm --recursive --if-present typecheck",
+    "test": "pnpm --recursive --if-present test",
+    "test:api": "pnpm --filter @agentforge/api --if-present test",
+    "test:integration": "pnpm --recursive --if-present test:integration",
+    "test:e2e": "pnpm --recursive --if-present test:e2e",
+    "test:golden": "pnpm --filter @agentforge/worker --if-present test:golden",
+    "test:visual": "pnpm --filter @agentforge/web --if-present test:visual",
+    "audit": "pnpm audit --audit-level moderate",
+    "db:up": "docker compose up postgres -d",
+    "db:migrate": "pnpm --filter @agentforge/api --if-present db:migrate",
+    "worker:dev": "pnpm --filter @agentforge/worker --if-present dev",
+    "queue:inspect": "pnpm --filter @agentforge/worker --if-present queue:inspect"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.4.5"
+  }
+}

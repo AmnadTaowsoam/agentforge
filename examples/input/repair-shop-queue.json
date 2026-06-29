@@ -1,0 +1,22 @@
+{
+  "projectName": "Repair-Shop Queue Management",
+  "domain": "field service / small business",
+  "idea": "A web app for a small auto repair shop to manage their job queue. Customers can book appointments online, the shop owner can see all jobs in a kanban board (Waiting, In Progress, Done), mechanics are assigned to jobs, customers get SMS/email updates when their car is ready. The shop wants to cut phone calls by 70% and average turnaround from 3 days to 1.5 days.",
+  "inputs": [
+    {
+      "input_type": "idea",
+      "label": "Raw Product Idea",
+      "content_ref": "A web app for a small auto repair shop to manage their job queue. Customers can book appointments online, the shop owner can see all jobs in a kanban board (Waiting, In Progress, Done), mechanics are assigned to jobs, customers get SMS/email updates when their car is ready. The shop wants to cut phone calls by 70% and average turnaround from 3 days to 1.5 days."
+    },
+    {
+      "input_type": "constraint",
+      "label": "Budget Constraint",
+      "content_ref": "Solo developer, 3-month timeline, ~$50/month hosting budget"
+    },
+    {
+      "input_type": "context",
+      "label": "Current Pain Points",
+      "content_ref": "Currently using a paper logbook and sticky notes. Miss ~20% of callback appointments. Customers call 2-3x to check status."
+    }
+  ]
+}
